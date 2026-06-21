@@ -1,0 +1,31 @@
+# Bayesian (Optuna) tuning configuration.
+tuning:
+  agent: "dqn"          # which agent to tune
+  n_trials: 15
+  episodes_per_trial: 60
+  storage: null          # "sqlite:///optuna_dqn.db" to persist; null = in-memory
+  study_name: "dqn_hparam_search"
+  direction: "maximize"
+  seed: 0
+  results_csv: "results/metrics/bayesian_tuning_results.csv"
+  history_plot: "results/plots/tuning_history.png"
+
+search_space:
+  learning_rate:
+    type: "loguniform"
+    low: 1.0e-4
+    high: 5.0e-3
+  gamma:
+    type: "uniform"
+    low: 0.9
+    high: 0.999
+  batch_size:
+    type: "categorical"
+    choices: [32, 64, 128]
+  hidden_size:
+    type: "categorical"
+    choices: [64, 128, 256]
+  epsilon_decay_episodes:
+    type: "int"
+    low: 50
+    high: 250

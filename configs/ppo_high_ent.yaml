@@ -1,0 +1,19 @@
+# PPO config with higher entropy coefficient to investigate the gradual_management anomaly.
+# ent_coef raised from 0.01 -> 0.05 to encourage more exploration away from the
+# calorie-cut local optimum that causes 30+ safety interventions/episode.
+ppo:
+  total_timesteps: 30000
+  n_steps: 512
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.05
+  learning_rate: 0.0003
+  policy: "MlpPolicy"
+  seed: 42
+  verbose: 0
+  save_path: "results/trained_models/ppo_high_ent_model.zip"
+  metrics_path: "results/metrics/ppo_high_ent_training_metrics.csv"
+  plot_path: "results/plots/ppo_high_ent_training_curve.png"
