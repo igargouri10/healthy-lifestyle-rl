@@ -11,9 +11,10 @@ __pycache__/
 venv/
 env/
 
-# Editors
+# Editors / tooling
 .vscode/
 .idea/
+.claude/
 
 # OS
 .DS_Store

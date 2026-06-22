@@ -76,7 +76,9 @@ The reward still comes out at ≈200 (vs 208 for rule-based) because the unsafe-
 
 **Likely cause**: PPO's on-policy updates may have settled into a mode where calorie-decrease attempts are consistently high-probability (the policy hasn't learned that clipped actions incur a penalty), possibly because the early entropy term (`ent_coef=0.01`) wasn't high enough to explore away from this local optimum.
 
-**What I would try**: increase `ent_coef` to 0.05–0.1 during training on this profile, or add a stronger `unsafe_action_penalty` weight in `configs/env.yaml` for the `gradual_management` profile. For now this is documented as an open issue and reflected in the Results discussion in the capstone report.
+**What I tried**: retrained PPO with `ent_coef=0.05` (`configs/ppo_high_ent.yaml`, model at `results/trained_models/ppo_high_ent_model.zip`). The result was worse across every profile — interventions on `gradual_management` rose from 30.4 to 45.0/episode, and profiles that previously had zero interventions (`maintenance`, `activity_consistency`, `performance_support`) spiked to 19.5, 39.3, and 31.6 respectively. Rewards dropped 15–20 points. Higher entropy made the policy more erratic, not more goal-aware.
+
+**Conclusion**: the root cause is not insufficient exploration — it is that the `goal_progress` reward component is not weighted heavily enough relative to `adherence` and `recovery` to motivate a calorie-reduction strategy. The fix is to increase `goal_progress` weight in `configs/env.yaml`, not to tune PPO's exploration. Listed as future work.
 
 ## Things I would do differently next time
 
