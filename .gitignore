@@ -24,3 +24,12 @@ Thumbs.db
 results/trained_models/*.pt
 results/trained_models/*.zip
 optuna_*.db
+
+# LaTeX build artifacts (keep .tex and .pdf, ignore intermediates)
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
