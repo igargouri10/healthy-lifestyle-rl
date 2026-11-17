@@ -118,3 +118,9 @@ AI assistance: Anthropic's Claude was used as a pair-programming and drafting as
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+## Local recording workflow (October 2026)
+
+A recording workflow has been prepared in the parent workspace's `DEMO_GUIDE.md`.
+These are bounded demonstrations, not a claim that every experimental workflow has been reproduced.
+Keep AI-assisted implementation attribution and the documented limitations in public descriptions.
